@@ -35,7 +35,7 @@ const PickDropDetail: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-4 sm:px-2 md:px-0 md:flex-row flex-col max-w-[1440px] mx-auto">
+    <div className="flex items-center justify-center gap-4 px-2  md:flex-row flex-col max-w-[1440px] mx-auto">
       {/* Pick-Up Section */}
       <div className="border rounded-lg p-4 shadow-md bg-primary-foreground dark:bg-primary-foreground ">
         <div className="mb-4">

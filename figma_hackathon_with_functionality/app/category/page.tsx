@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import Popular_Cars from '../../components/interface';
+import {Cars} from '../../components/interface';
 import { Button } from '../../components/ui/button';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
@@ -31,7 +31,8 @@ async function getData() {
         "carType": carType,
         gasoline,
         rating,
-        "ratingCount": ratingCount
+        "ratingCount": ratingCount,
+        brand,
     }
   `;
   const data = await client.fetch(query);
@@ -39,14 +40,15 @@ async function getData() {
 }
 
 export default function Category() {
-  const [data, setData] = useState<Popular_Cars[]>([]);
-  const [filteredData, setFilteredData] = useState<Popular_Cars[]>([]);
+  const [data, setData] = useState<Cars[]>([]);
+  const [filteredData, setFilteredData] = useState<Cars[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState({
     carType: [] as string[],
     personCapacity: [] as string[],
     rentRange: 200, // Default max rent range
   });
+  const [wishlist, setWishlist] = useState<string[]>([]); // Store car IDs in wishlist
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -99,6 +101,35 @@ export default function Category() {
     }));
   };
 
+  // Load cars data
+    useEffect(() => {
+      const fetchData = async () => {
+        const result = await getData();
+        setData(result);
+      };
+      fetchData();
+    }, []);
+  
+    // Load wishlist from localStorage on component mount
+    useEffect(() => {
+      const storedWishlist = localStorage.getItem('wishlist');
+      if (storedWishlist) {
+        setWishlist(JSON.parse(storedWishlist));
+      }
+    }, []);
+  
+    // Update localStorage whenever the wishlist changes
+    useEffect(() => {
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }, [wishlist]);
+  
+    // Add or remove cars from the wishlist
+    const toggleWishlist = (carId: string) => {
+      setWishlist((prev) =>
+        prev.includes(carId) ? prev.filter((id) => id !== carId) : [...prev, carId]
+      );
+    };
+
   return (
     <div className="w-full mx-auto pt-0 bg-background dark:bg-background ">
       {/* Toggle Button */}
@@ -127,7 +158,7 @@ export default function Category() {
                 TYPE
             </h1>
             {['Sport', 'SUV', 'Sedan', 'Hatchback', 'Muscle'].map((type) => (
-                <div className="flex justify-start items-center gap-2" key={type}>
+              <div className="flex justify-start items-center gap-2" key={type}>
                 <label>
                     <Input
                     type="checkbox"
@@ -137,7 +168,7 @@ export default function Category() {
                     />
                 </label>
                 <p className="text-[20px] font-semibold">{type}</p>
-                </div>
+              </div>
             ))}
             </div>
           {/* Capacity */}
@@ -146,7 +177,7 @@ export default function Category() {
                 CAPACITY
             </h1>
             {['2 Peoples', '4 Peoples', '6 Peoples', '8 or More'].map((capacity) => (
-                <div className="flex justify-start items-center gap-2" key={capacity}>
+              <div className="flex justify-start items-center gap-2" key={capacity}>
                 <label>
                     <Input
                     type="checkbox"
@@ -156,7 +187,7 @@ export default function Category() {
                     />
                 </label>
                 <p className="text-[20px] font-semibold">{capacity}</p>
-                </div>
+              </div>
             ))}
             </div>
           {/* Price */}
@@ -203,37 +234,44 @@ export default function Category() {
                 key={car._id}
               >
                 <div className="bg-primary-foreground dark:bg-primary-foreground w-[304px] h-[388px] rounded-[10px] relative shadow-xl shadow-gray-300 dark:shadow-xl dark:shadow-primary py-4 px-2 flex justify-center items-center">
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     {/* Name and cart type */}
                     <div className="flex justify-between items-start gap-16">
                       <div>
                         <h1 className="text-[20px] font-bold line-clamp-1">
                           {car.name}
                         </h1>
-                        <p className="text-[14px] font-bold text-ThirdColor">
+                        <p className="text-[14px] font-bold text-muted-foreground">
+                          {car.brand}
+                        </p>
+                        <p className="text-[14px] font-bold text-muted-foreground">
                           {car.carType}
                         </p>
                       </div>
+                      {/* Heart with button */}
                       <div>
-                        <button>
-                          <Heart className="text-[#8fa3c1]" fill="red" />
+                        <button onClick={() => toggleWishlist(car._id)} className="focus:outline-none">
+                            <Heart className={`${wishlist.includes(car._id) ? 'text-red-500' : 'text-[#8fa3c1]'}`}
+                                fill={wishlist.includes(car._id) ? 'red' : 'none'}
+                            />
                         </button>
                       </div>
                     </div>
                     {/* Car */}
                     <div className="">
-                      <div>
+                      <div className='flex justify-center items-center'>
                         <Image
                           src={car.image}
                           alt={car.name}
-                          width={250}
+                          width={230}
                           height={68}
+                          priority
                         />
                         <span className="CarShadow"></span>
                       </div>
                     </div>
                     {/* Icons */}
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center gap-2">
                       <div className="flex justify-center items-center gap-1">
                         <RiGasStationFill color="#8fa3c1" />
                         <p className="text-[14px] font-medium text-[#8fa3c1]">
@@ -267,7 +305,7 @@ export default function Category() {
                         </p>
                       </div>
                       <Button className="text-[16px] font-semibold text-white bg-primary px-4 py-1 rounded h-[44px] ">
-                        <Link href={`/category/cars/${car.slug}`}>Rent Now</Link>
+                        <Link href={`/categories/cars/${car.slug}`}>Rent Now</Link>
                       </Button>
                     </div>
                   </div>

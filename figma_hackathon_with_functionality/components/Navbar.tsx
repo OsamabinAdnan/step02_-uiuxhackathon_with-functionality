@@ -5,15 +5,13 @@ import { Input } from "../components/ui/input";
 import Link from "next/link";
 import { ModeToggle } from "../components/mode-toggle";
 import { Bell, Heart, Search, Settings2, User } from "lucide-react";
-import { IoMdSettings } from "react-icons/io";
+import { IoMdSettings } from "react-icons/io"; // Importing the settings icon
 import {
-  ClerkProvider,
   SignInButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-
 
 interface Notification {
   id: number;
@@ -21,15 +19,12 @@ interface Notification {
   message: string;
 }
 
-
-
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const notifications: Notification[] = []; // Explicitly typed notification array
-  
 
   // Toggle filter functionality
   const toggleFilter = () => {
@@ -47,10 +42,10 @@ export default function Navbar() {
   };
 
   return (
-    <ClerkProvider>
-      {/* For bigger screens */}
+    <>
+      {/* Desktop version */}
       <header className="max-w-full w-screen mx-auto border-b shadow-sm dark:bg-primary-foreground px-16 lg:block hidden">
-        <div className="flex justify-between items-center py-4  gap-2">
+        <div className="flex justify-between items-center py-4 gap-2">
           {/* Logo */}
           <div>
             <h1 className="text-primary text-[32px] font-bold">
@@ -81,25 +76,38 @@ export default function Navbar() {
                 className="p-2 rounded-full bg-gray-100 dark:bg-primary"
                 aria-label="Toggle Filters"
               >
-                <Link href='/category'><Settings2 width={24} height={24} /></Link>
+                <Settings2 width={24} height={24} />
               </button>
             </span>
           </div>
 
           {/* Right Side */}
           <div className="flex justify-between items-center gap-5">
-            <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center">
-              <Link href={"/wishlist"}>
-                <Heart
-                  width={24}
-                  height={24}
-                  className="text-[#596780] fill-current dark:text-primary dark:fill-current"
-                />
-              </Link>
-            </div>
+            {/* Sign-in / Sign-up Button when signed out */}
+            <SignedOut>
+              <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] flex justify-center items-center">
+                <SignInButton>
+                  <button className="text-[#596780] dark:text-primary dark:fill-current">
+                    <User />
+                  </button>
+                </SignInButton>
+              </div>
+            </SignedOut>
 
-            {/* Notification Dropdown */}
+            {/* User, Heart, Bell, and Settings icons when signed in */}
             <SignedIn>
+              {/* Heart Icon */}
+              <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center">
+                <Link href="/wishlist">
+                  <Heart
+                    width={24}
+                    height={24}
+                    className="text-[#596780] fill-current dark:text-primary dark:fill-current"
+                  />
+                </Link>
+              </div>
+
+              {/* Notification Dropdown */}
               <div
                 className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center relative cursor-pointer"
                 onClick={toggleDropdown}
@@ -131,31 +139,22 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-            </SignedIn>
 
-            <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center">
-              <Link href={"/detail"}>
-                <IoMdSettings
-                  width={24}
-                  height={24}
+              {/* Settings Icon */}
+              <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center">
+                <button
                   className="text-[#596780] dark:text-primary dark:fill-current"
-                />
-              </Link>
-            </div>
+                  aria-label="Settings"
+                >
+                  <IoMdSettings width={24} height={24} />
+                </button>
+              </div>
 
-            {/* Sign in and Sign out functionality */}
-            <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] flex justify-center  items-center">
-              <SignedOut>
-                <SignInButton>
-                  <button className="text-[#596780] dark:text-primary dark:fill-current">
-                    <User />
-                  </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
+              {/* User Icon (Profile) */}
+              <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] hidden md:flex justify-center items-center">
                 <UserButton />
-              </SignedIn>
-            </div>
+              </div>
+            </SignedIn>
           </div>
 
           {/* Theme toggle button */}
@@ -165,18 +164,18 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* @@@@@@@@@@@@@@@@@@@@ For Smaller screens @@@@@@@@@@@@@@@@@@@@@@@@@*/}
-
-      <header className="lg:hidden block max-w-full w-screen mx-auto  border-b shadow-sm dark:bg-primary-foreground py-4 px-2 space-y-4">
-        <div className="flex justify-between items-center  gap-2 ">
+      {/* Mobile version */}
+      <header className="lg:hidden block max-w-full w-screen mx-auto border-b shadow-sm dark:bg-primary-foreground py-4 px-2 space-y-4">
+        <div className="flex justify-between items-center gap-2">
           {/* Main Logo */}
           <div>
             <h1 className="text-primary text-[32px] font-bold">
               <Link href="/">MORENT</Link>
             </h1>
           </div>
-          {/* Login /Signup button */}
-          <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] flex justify-center  items-center">
+
+          {/* Login/Signup button */}
+          <div className="w-[44px] h-[44px] rounded-full border-[2px] border-[#C3D4E9] flex justify-center items-center">
             <SignedOut>
               <SignInButton>
                 <button className="text-[#596780] dark:text-primary dark:fill-current">
@@ -190,8 +189,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        
-        <div className=" flex justify-between items-center gap-2">
+        <div className="flex justify-between items-center gap-2">
           {/* Search bar */}
           <div className="border-[1px] rounded-full flex justify-between items-center px-1">
             <span className="flex justify-center items-center md:w-[492px] gap-5">
@@ -223,8 +221,7 @@ export default function Navbar() {
             <ModeToggle />
           </div>
         </div>
-        
       </header>
-    </ClerkProvider>
+    </>
   );
 }

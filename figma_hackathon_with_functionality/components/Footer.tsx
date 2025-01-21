@@ -38,7 +38,7 @@ const Privacylinks = [
 export default function Footer() {
     const pathname = usePathname()
   return (
-    <footer className='w-full lg:px-16 md:px-8 px-2 md:pt-[80px] pt-10 dark:bg-primary-foreground mx-auto'>
+    <footer className='w-full xl:px-16 lg:md-8 md:px-4 px-2 md:pt-[80px] pt-10 dark:bg-primary-foreground mx-auto'>
       <div className='flex justify-between lg:flex-row flex-col md:gap-12 gap-8 mb-9'>
             {/* Logo and Detail  */}
             <div className='flex flex-col w-[292px] gap-4'>
