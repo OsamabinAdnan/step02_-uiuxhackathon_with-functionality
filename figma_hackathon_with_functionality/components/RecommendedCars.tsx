@@ -14,27 +14,33 @@ import { useRouter } from 'next/navigation';
 
 // Fetching popular cars data
 async function getData() {
-  const query = `
-    *[_type == "car" && tags == "recommended"] {
-        _id,
-        name,
-        "tags": tags,
-        "slug": slug.current,
-        "image": images[0].asset->url,
-        rent,
-        previousRent,
-        "steering": steering,
-        "personCapacity": personCapacity,
-        "carType": carType,
-        gasoline,
-        rating,
-        "ratingCount": ratingCount,
-        brand,
-    }
-  `;
-  const data = await client.fetch(query);
-  return data;
+  try {
+    const query = `
+      *[_type == "car" && tags == "recommended"] {
+          _id,
+          name,
+          "tags": tags,
+          "slug": slug.current,
+          "image": images[0].asset->url,
+          rent,
+          previousRent,
+          "steering": steering,
+          "personCapacity": personCapacity,
+          "carType": carType,
+          gasoline,
+          rating,
+          "ratingCount": ratingCount,
+          brand,
+      }
+    `;
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error; 
+  }
 }
+
 
 export default function Recommended_Cars() {
   const [data, setData] = useState<Popular_Cars[]>([]);

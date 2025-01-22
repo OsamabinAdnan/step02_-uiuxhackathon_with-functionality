@@ -1,0 +1,8 @@
+Test Case ID,Test Case Description,Test Steps,Expected Results,Actual Result,Staus,Severity Level,Assigned to:,Remarks
+TC001,"Test navigation
+links",Open app => check all links,All links navigate correctly,All links navigate as expected,Passed,Low,-,No issue Found
+TC002,Verify product listing display,Open car page => Verify cars,Cars display correctly,Cars display as expected,Passed,Low,-,No issue Found
+TC003,Check filter on category page,Open category page ==> apply filter,Cars display correctly,Cars display as expected,Passed,Medium,-,No issue Found
+TC004,Test API,Check API via PostAPI,Data fetch from API,Car data fetched from API,Passed,Medium,-,No issue Found
+TC005,Payment Page Car fetch using car id,Click on car which user wants to get on rent,User's car data fetch on payment page,User's car data fetch on payment page,Passed,High,-,No issue Found
+TC006,Responsiveness on Mobile,Resize browser layout => check layout,layout adjust according to screen size,layout works as intended,Passed,Medium,-,Work as expected

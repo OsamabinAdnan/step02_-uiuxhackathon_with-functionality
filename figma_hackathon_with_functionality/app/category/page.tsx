@@ -17,7 +17,9 @@ import { ImCross } from 'react-icons/im';
 import PickDropDetail from '@/components/PickupDropOff';
 
 async function getData() {
+  try {
   const query = `
+  
     *[_type == "car"] {
         _id,
         name,
@@ -36,7 +38,11 @@ async function getData() {
     }
   `;
   const data = await client.fetch(query);
-  return data;
+    return data || []; // Fallback to an empty array if no data is fetched
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return []; // Return an empty array on error
+  }
 }
 
 export default function Category() {
@@ -63,17 +69,16 @@ export default function Category() {
 
   // Update filtered data whenever filters change
   useEffect(() => {
-    const filtered = data.filter((car) => {
-      const carTypeMatch =
-        filters.carType.length === 0 || filters.carType.includes(car.carType);
-      const personCapacityMatch =
-        filters.personCapacity.length === 0 ||
-        filters.personCapacity.includes(car.personCapacity);
+    const filtered = (data || []).filter((car) => {
+      const carTypeMatch = filters.carType.length === 0 || filters.carType.includes(car.carType);
+      const personCapacityMatch = filters.personCapacity.length === 0 || filters.personCapacity.includes(car.personCapacity);
       const rentMatch = car.rent <= filters.rentRange;
-
+    
       return carTypeMatch && personCapacityMatch && rentMatch;
     });
+
     setFilteredData(filtered);
+    console.log("Updated Filters:", filters);
   }, [filters, data]);
 
   const handleCarTypeChange = (type: string) => {
@@ -82,7 +87,9 @@ export default function Category() {
       carType: prev.carType.includes(type)
         ? prev.carType.filter((t) => t !== type) // Remove type if already selected
         : [...prev.carType, type], // Add type if not selected
+        
     }));
+    console.log("Selected Type:", type);
   };
 
   const handlePersonCapacityChange = (capacity: string) => {
@@ -100,21 +107,17 @@ export default function Category() {
       rentRange: value,
     }));
   };
-
-  // Load cars data
-    useEffect(() => {
-      const fetchData = async () => {
-        const result = await getData();
-        setData(result);
-      };
-      fetchData();
-    }, []);
   
     // Load wishlist from localStorage on component mount
     useEffect(() => {
-      const storedWishlist = localStorage.getItem('wishlist');
-      if (storedWishlist) {
-        setWishlist(JSON.parse(storedWishlist));
+      try {
+        const storedWishlist = localStorage.getItem('wishlist');
+        if (storedWishlist) {
+          setWishlist(JSON.parse(storedWishlist));
+        }
+      } catch (error) {
+        console.error('Error loading wishlist from localStorage:', error);
+        setWishlist([]); // Fallback to an empty array
       }
     }, []);
   
@@ -226,7 +229,7 @@ export default function Category() {
             {/* Check if filteredData is empty */}
             {filteredData.length === 0 ? 
                 (
-                <p className="text-center text-[18px] font-semibold text-gray-500 w-full">No cars available for the selected filters.</p>
+                <p className="text-center text-[32px] font-semibold text-gray-500 w-full">No cars available for the selected filters.</p>
                 ) : (
             filteredData.map((car) => (
               <div
@@ -261,7 +264,7 @@ export default function Category() {
                     <div className="">
                       <div className='flex justify-center items-center'>
                         <Image
-                          src={car.image}
+                          src={car.image || ''}
                           alt={car.name}
                           width={230}
                           height={68}

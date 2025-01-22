@@ -12,25 +12,31 @@ import { HiUsers } from 'react-icons/hi'
 import { Button } from './ui/button'
 
 const getData = async () => {
-  const query = `
-    *[_type == "car"][0...6] {
-      _id,
-      name,
-      "tags": tags,
-      "slug": slug.current,
-      "image": images[0].asset->url,
-      rent,
-      previousRent,
-      "steering": steering,
-      "personCapacity": personCapacity,
-      "carType": carType,
-      gasoline,
-      brand,
-    }
-  `
-  const data = await client.fetch(query)
-  return data
+  try {
+    const query = `
+      *[_type == "car"][0...6] {
+        _id,
+        name,
+        "tags": tags,
+        "slug": slug.current,
+        "image": images[0].asset->url,
+        rent,
+        previousRent,
+        "steering": steering,
+        "personCapacity": personCapacity,
+        "carType": carType,
+        gasoline,
+        brand,
+      }
+    `;
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error; // Re-throw the error if you want it to propagate further
+  }
 }
+
 
 export default function RecentCar() {
   const [data, setData] = useState<RecentCars[]>([])
