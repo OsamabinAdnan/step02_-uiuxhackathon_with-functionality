@@ -3,7 +3,7 @@ export interface Cars {
     name:string,
     tags:string,
     slug:string,
-    image:any,
+    image:string,
     rent:number,
     previousRent:number,
     steering:string,
@@ -19,7 +19,7 @@ export default interface Popular_Cars {
     name:string,
     tags:string,
     slug:string,
-    image:any,
+    image:string,
     rent:number,
     previousRent:number,
     steering:string,
@@ -34,7 +34,7 @@ export interface Recommended_Cars {
     name:string,
     tags:string,
     slug:string,
-    image:any,
+    image:string,
     rent:number,
     previousRent:number,
     steering:string,
@@ -49,7 +49,7 @@ export interface Categories {
     name:string,
     tags:string,
     slug:string,
-    image:any,
+    image:string,
     rent:number,
     previousRent:number,
     steering:string,
@@ -65,7 +65,7 @@ export interface CarDetailPage {
     description:string,
     tag:string,
     slug:string,
-    images:any[],
+    images:string[],
     rent:number,
     previousRent:number,
     steering:string,
@@ -85,7 +85,7 @@ export interface Comment {
     designation:string,
     rating:number,
     date:string,
-    image:any
+    image:string
 }
 
 export interface RecentCars {
@@ -110,5 +110,5 @@ export interface PaymentPage {
     previousRent:number,
     rating:number,
     ratingCount:number,
-    image:any
+    image:string
 }
