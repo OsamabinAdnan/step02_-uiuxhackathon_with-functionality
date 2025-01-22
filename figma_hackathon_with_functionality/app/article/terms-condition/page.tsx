@@ -26,7 +26,7 @@ export default function TermCondition() {
             {/* No Warranties */}
             <ol className='space-y-3'>
                 <li className='sm:text-2xl text-xl font-bold'><span className='text-primary'>3.</span> No Warranties</li>
-                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>This website and services are provided "as is," with all faults, and Morent makes no representations or warranties of any kind related to our website or services.</p>
+                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>This website and services are provided as is, with all faults, and Morent makes no representations or warranties of any kind related to our website or services.</p>
             </ol>
             {/* Limitation of Liability */}
             <ol className='space-y-3'>

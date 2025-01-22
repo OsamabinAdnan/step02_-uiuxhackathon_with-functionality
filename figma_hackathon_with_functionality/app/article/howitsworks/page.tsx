@@ -20,7 +20,7 @@ export default function HowitsWorks() {
             </ol>
             <ol className='space-y-3'>
                 <li className='sm:text-2xl text-xl font-bold'><span className='text-primary'>4.</span> Availability for Rental</li>
-                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>After completing the registration, quality checks, and insurance formalities, the car becomes available for rental. Renters can browse through our diverse selection of vehicles and choose the one that best suits their needs. With a wide range of options available, ranging from compact cars to spacious SUVs, we ensure that there's something for everyone.</p>
+                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>After completing the registration, quality checks, and insurance formalities, the car becomes available for rental. Renters can browse through our diverse selection of vehicles and choose the one that best suits their needs. With a wide range of options available, ranging from compact cars to spacious SUVs, we ensure that there&apos;s something for everyone.</p>
             </ol>
             <ol className='space-y-3'>
                 <li className='sm:text-2xl text-xl font-bold'><span className='text-primary'>5.</span> Advanced Technology Integration</li>

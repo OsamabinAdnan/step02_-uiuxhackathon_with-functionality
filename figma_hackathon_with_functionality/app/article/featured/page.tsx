@@ -24,7 +24,7 @@ export default function Featured() {
             </ol>
             <ol className='space-y-3'>
                 <li className='sm:text-2xl text-xl font-bold'><span className='text-primary'>5.</span> Your Journey Starts Here</li>
-                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>Embark on your next adventure with confidence, knowing that Morent's featured collection has been curated with your driving pleasure in mind. Browse through our handpicked selection, find the perfect vehicle that matches your style and preferences, and experience the ultimate driving experience like never before.</p>
+                <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>Embark on your next adventure with confidence, knowing that Morent&apos;s featured collection has been curated with your driving pleasure in mind. Browse through our handpicked selection, find the perfect vehicle that matches your style and preferences, and experience the ultimate driving experience like never before.</p>
             </ol>
             <ol className='space-y-3'>
                 <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-[20px]'>Discover the epitome of automotive excellence with Morent&#039;s featured selection today!</p>
