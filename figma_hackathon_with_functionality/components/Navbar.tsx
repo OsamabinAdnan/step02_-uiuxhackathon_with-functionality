@@ -12,6 +12,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Searchbar from "./Searchbar";
 
 interface Notification {
   id: number;
@@ -52,34 +53,11 @@ export default function Navbar() {
               <Link href="/">MORENT</Link>
             </h1>
           </div>
-
           {/* Search bar */}
           <div className="border-[1px] rounded-full flex justify-between items-center px-4">
-            <span className="flex justify-center items-center md:w-[492px] gap-5">
-              <button
-                onClick={toggleSearchBar}
-                className="bg-gray-100 dark:bg-primary rounded-full p-2"
-              >
-                <Search />
-              </button>
-              <Input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search something here"
-                className="border-none"
-              />
-            </span>
-            <span>
-              <button
-                onClick={toggleFilter}
-                className="p-2 rounded-full bg-gray-100 dark:bg-primary"
-                aria-label="Toggle Filters"
-              >
-                <Settings2 width={24} height={24} />
-              </button>
-            </span>
+            <Searchbar/>
           </div>
+          
 
           {/* Right Side */}
           <div className="flex justify-between items-center gap-5">
@@ -193,29 +171,11 @@ export default function Navbar() {
           {/* Search bar */}
           <div className="border-[1px] rounded-full flex justify-between items-center px-1">
             <span className="flex justify-center items-center md:w-[492px] gap-5">
-              <button
-                onClick={toggleSearchBar}
-                className="bg-gray-100 dark:bg-primary rounded-full p-2"
-              >
-                <Search />
-              </button>
-              <Input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search something here"
-                className="border-none"
-              />
+              
+                <Searchbar />
+              
             </span>
-            <span>
-              <button
-                onClick={toggleFilter}
-                className="p-2 rounded-full bg-gray-100 dark:bg-primary"
-                aria-label="Toggle Filters"
-              >
-                <Settings2 width={24} height={24} />
-              </button>
-            </span>
+           
           </div>
           <div>
             <ModeToggle />

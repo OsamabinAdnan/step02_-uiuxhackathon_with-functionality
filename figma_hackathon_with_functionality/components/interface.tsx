@@ -112,3 +112,18 @@ export interface PaymentPage {
     ratingCount:number,
     image:string
 }
+
+export interface SearchCar {
+    _id:string,
+    name:string,
+    tags:string,
+    slug:string,
+    image:string,
+    rent:number,
+    previousRent:number,
+    steering:string,
+    personCapacity:string
+    carType:string
+    gasoline:string
+    brand:string
+}
