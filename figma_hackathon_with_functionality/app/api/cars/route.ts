@@ -8,6 +8,7 @@ const sanityClient = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || '', // Replace with your dataset name
   apiVersion: '2023-01-01', // Use your preferred API version
   useCdn: true, // `false` if you need fresh data
+  token: process.env.NEXT_PUBLIC_SANITY_TOKEN || '', // Replace with your token if needed
 });
 
 

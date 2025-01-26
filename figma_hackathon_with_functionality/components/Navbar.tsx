@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input } from "../components/ui/input";
 import Link from "next/link";
 import { ModeToggle } from "../components/mode-toggle";
-import { Bell, Heart, Search, Settings2, User } from "lucide-react";
+import { Bell, Heart, User } from "lucide-react";
 import { IoMdSettings } from "react-icons/io"; // Importing the settings icon
 import {
   SignInButton,
@@ -21,21 +20,12 @@ interface Notification {
 }
 
 export default function Navbar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const notifications: Notification[] = []; // Explicitly typed notification array
 
-  // Toggle filter functionality
-  const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen);
-  };
 
-  // Toggle search bar visibility
-  const toggleSearchBar = () => {
-    setIsSearchVisible(!isSearchVisible);
-  };
 
   // Toggle dropdown visibility
   const toggleDropdown = () => {
