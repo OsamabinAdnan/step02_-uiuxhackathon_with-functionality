@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SearchCar } from '@/components/interface';
 import { Heart } from 'lucide-react';
@@ -59,7 +59,7 @@ export default function SearchResults() {
 
   return (
     <div className="container mx-auto px-4 py-6 h-[80vh]">
-      <h1 className="text-2xl font-bold mb-4">Search Results for "{query}"</h1>
+      <h1 className="text-2xl font-bold mb-4">Search Results for `&quot;{query}`&quot;</h1>
       {loading ? (
         <div className="flex justify-center items-center h-full">
           <p className="text-3xl font-semibold text-primary dark:text-primary">Loading...</p>
