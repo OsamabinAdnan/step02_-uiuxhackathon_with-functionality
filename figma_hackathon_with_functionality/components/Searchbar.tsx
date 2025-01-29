@@ -21,7 +21,7 @@ export default function Searchbar() {
       <form 
         action="" 
         onSubmit={handleSearch} 
-        className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4"
+        className="flex justify-between items-center gap-2 sm:gap-4"
       >
         <button className="p-2 rounded-full bg-gray-100 dark:bg-primary">
           <Search />
