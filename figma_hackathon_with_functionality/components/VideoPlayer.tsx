@@ -31,6 +31,7 @@ const VideoSequence: React.FC = () => {
   return (
     <div className='max-w-[1440px] mx-auto my-10'>
       <video
+        preload='auto'
         ref={videoRef}
         autoPlay
         muted
