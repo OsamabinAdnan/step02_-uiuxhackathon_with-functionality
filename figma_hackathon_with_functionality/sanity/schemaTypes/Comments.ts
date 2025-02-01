@@ -1,4 +1,4 @@
-// schemas/comment.js
+// schemas/comment.ts
 import { Rule as RuleType } from '@sanity/types';
 
 export default {

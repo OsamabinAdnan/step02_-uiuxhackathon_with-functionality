@@ -1,8 +1,10 @@
+import CommentsHeroSection from "@/components/CommentsHeroSection";
 import Hero from "@/components/HeroSection";
-import PickDropDetail from "@/components/PickupDropOff";
 import PopularCars from "@/components/PopularCars";
 import RecommendedCars from "@/components/RecommendedCars";
 import UserDetail from "@/components/UserDetail";
+import VideoSequence from "@/components/VideoPlayer";
+
 
 
 export default function Home() {
@@ -10,9 +12,10 @@ export default function Home() {
    <>
     <UserDetail/>
     <Hero/>
-    <PickDropDetail/>
+    <VideoSequence />
     <PopularCars/>
     <RecommendedCars/>
+    <CommentsHeroSection/>
    </>
   );
 }

@@ -13,7 +13,7 @@ const PlusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Morent | Car Rental Service",
+  title: "Morent | Car Rental Service 🚗💨",
   description: "Car Rental Service",
   keywords: "Car Rental, Rent a Car, Car Hire",
 };

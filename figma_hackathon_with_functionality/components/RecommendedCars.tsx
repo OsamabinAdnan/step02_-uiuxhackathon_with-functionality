@@ -85,7 +85,7 @@ export default function Recommended_Cars() {
         </div>
       </div>
       {/* Cars Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 xl:gap-x-8 mx-auto place-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10 xl:gap-x-8 mx-auto place-items-center">
         {data.map((car) => (
           <div className="flex justify-between items-center gap-8" key={car._id}>
             <div className="bg-primary-foreground dark:bg-primary-foreground w-[304px] h-[388px] rounded-[10px] relative shadow-xl shadow-gray-300 dark:shadow-xl dark:shadow-primary py-4 px-2 flex justify-center items-center">

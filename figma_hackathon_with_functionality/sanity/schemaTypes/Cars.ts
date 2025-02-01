@@ -19,6 +19,8 @@ export default {
         {name: 'tags',title: 'Tags',type: 'string', description: 'Select or create tags for this product.',},
         {name:'rating',type:'number',title:'Rating',description: 'The average rating for the product (out of 5).',validation: (Rule:RuleType) => Rule.min(0).max(5),},
         {name: 'ratingCount',type: 'number',title: 'Rating Count',description: 'The total number of ratings received.',validation: (Rule:RuleType) => Rule.min(0),},
+         // New field to determine if the car is available for rent:
+        { name: 'isAvailable', title: 'Available for Rent', type: 'boolean', initialValue: true, description: 'Automatically updated based on rental order status.' },
     ]
 }
 

@@ -127,3 +127,48 @@ export interface SearchCar {
     gasoline:string
     brand:string
 }
+
+export interface CarRentalDetails {
+    name: string;
+    rent: number;
+    totalAmount: number; // Calculated total amount
+    id:string;
+    image:string,
+    steering:string,
+    personCapacity:string,
+    carType:string,
+    gasoline:string,
+    description:string,
+    previousRent:number,
+    rating:number,
+    ratingCount:number,
+    brand:string
+    tags:string,
+}
+
+export interface FormDetails {
+    name?: string;
+    phone?: string;
+    email?: string;
+    address?: string;
+    city?: string;
+    pickupLocation?: string;
+    dropoffLocation?: string;
+    pickupDate?: string;
+    pickupTime?: string;
+    dropoffDate?: string;
+    dropoffTime?: string;
+    totalAmount?: number;
+    carId?: string;
+  }
+
+  export interface HeroComment {
+    _id:string,
+    carName:string,
+    comment:string,
+    name:string,
+    designation:string,
+    rating:number,
+    date:string,
+    image:string
+}
