@@ -54,71 +54,79 @@ export default function CommentsHeroSection() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto pb-10 relative">
-        <h1 className='text-[28px] font-semibold mb-12 text-center'>What Peoples say about us!</h1>
-      <Carousel
-        opts={{
-          align: 'start',
-          loop: true,
-        }}
-        className="max-w-[1240px] mx-auto"
-      >
-        <div className="absolute -top-10 right-12 flex gap-1">
-          <CarouselPrevious className="bg-primary dark:bg-primary text-secondary dark:text-secondary" />
-          <CarouselNext
-            ref={nextButtonRef}
-            className="bg-primary dark:bg-primary text-secondary dark:text-secondary"
-          />
+    <>
+      <div className='max-w-4xl mx-auto space-y-10'>
+        <div>
+          <h1 className='text-[28px] font-semibold mb-12 md:px-0 px-2 '>What Peoples say about us!</h1>
         </div>
-        <CarouselContent>
-          {comments.map((comment) => (
-            <CarouselItem
-              key={comment._id}
-              className="md:basis-1/2 lg:basis-1/3"
+        <div className="pb-10 ">
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: true,
+              }}
+              className=" "
             >
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex flex-col aspect-square items-start justify-start p-6 gap-2">
-                    <Image
-                      src={comment.image}
-                      alt={comment.name}
-                      width={50}
-                      height={50}
-                      className="rounded-lg"
-                    />
-                    <div className="flex flex-col gap-2">
-                      <h1 className="text-[22px] font-bold">
-                        {comment.name}
-                      </h1>
-                      <p className="text-[14px] font-medium text-muted-foreground dark:text-muted-foreground">
-                        {comment.designation}
-                      </p>
-                      <p className="text-[16px] font-normal  line-clamp-2">
-                        {comment.comment}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <p className="text-[16px] font-medium text-primary dark:text-primary">Car used {comment.carName}
-                      </p>
-                      <p className="text-[16px] font-medium">
-                        {new Date(comment.date).toLocaleDateString('en-US',{
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        })}
-                      </p>
-                      <div className='flex gap-1 justify-start items-center'>
-                        <span><Star className='text-[#FBAD39]' fill='#FBAD39'/></span>
-                        <span className="text-[18px] font-semibold ">{comment.rating}</span>
+          <div className="absolute -top-10 right-12 flex gap-1 ">
+            <CarouselPrevious className="bg-primary dark:bg-primary text-secondary dark:text-secondary" />
+            <CarouselNext
+              ref={nextButtonRef}
+              className="bg-primary dark:bg-primary text-secondary dark:text-secondary"
+              />
+          </div>
+              <div className=''>
+                <CarouselContent>
+                  {comments.map((comment) => (
+                    <CarouselItem
+                      key={comment._id}
+                      className="md:basis-1/2 lg:basis-1/3"
+                    >
+                      <div className="p-1">
+                        <Card>
+                          <CardContent className="flex flex-col aspect-square items-start justify-start p-6 gap-2">
+                            <Image
+                              src={comment.image}
+                              alt={comment.name}
+                              width={50}
+                              height={50}
+                              className="rounded-lg"
+                            />
+                            <div className="flex flex-col gap-2">
+                              <h1 className="text-[22px] font-bold">
+                                {comment.name}
+                              </h1>
+                              <p className="text-[14px] font-medium text-muted-foreground dark:text-muted-foreground">
+                                {comment.designation}
+                              </p>
+                              <p className="text-[16px] font-normal  line-clamp-2">
+                                {comment.comment}
+                              </p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              <p className="text-[16px] font-medium text-primary dark:text-primary">Car used {comment.carName}
+                              </p>
+                              <p className="text-[16px] font-medium">
+                                {new Date(comment.date).toLocaleDateString('en-US',{
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}
+                              </p>
+                              <div className='flex gap-1 justify-start items-center'>
+                                <span><Star className='text-[#FBAD39]' fill='#FBAD39'/></span>
+                                <span className="text-[18px] font-semibold ">{comment.rating}</span>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-    </div>
+            </Carousel>
+        </div>
+      </div>
+    </>
   );
 }
