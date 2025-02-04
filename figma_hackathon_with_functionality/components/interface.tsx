@@ -172,3 +172,12 @@ export interface FormDetails {
     date:string,
     image:string
 }
+
+export interface SanityUser {
+    _id: string;
+    clerkUserId: string;
+    email: string;
+    name: string;
+    createdAt: string;
+    // ... add other fields as needed
+  }

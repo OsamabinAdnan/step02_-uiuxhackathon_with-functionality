@@ -93,9 +93,9 @@ export default function Recommended_Cars() {
                 {/* Name and car type */}
                 <div className="flex justify-between items-start gap-16">
                   <div>
-                    <h1 className="text-[20px] font-bold line-clamp-1">{car.name}</h1>
-                    <p className="text-[14px] font-bold text-muted-foreground">{car.brand}</p>
-                    <p className="text-[14px] font-bold text-muted-foreground">{car.carType}</p>
+                    <h1 className="text-[20px] font-bold line-clamp-1 text-start">{car.name}</h1>
+                    <p className="text-[14px] font-bold text-muted-foreground text-start">{car.brand}</p>
+                    <p className="text-[14px] font-bold text-muted-foreground text-start">{car.carType}</p>
                   </div>
                   {/* Heart Button */}
                   <div>
