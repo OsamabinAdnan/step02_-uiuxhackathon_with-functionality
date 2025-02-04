@@ -33,7 +33,11 @@ export default function AdminLogin() {
                 setError(data.message || 'Invalid email or password');
             }
         } catch (error) {
-            setError('Something went wrong. Please try again later.');
+            if (error instanceof Error) {
+                setError(error.message || 'Something went wrong. Please try again later.');
+            } else {
+                setError('Something went wrong. Please try again later.');
+            }
         }
     }
 
