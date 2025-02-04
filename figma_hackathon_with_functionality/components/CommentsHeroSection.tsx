@@ -55,7 +55,7 @@ export default function CommentsHeroSection() {
 
   return (
     <div className="max-w-4xl mx-auto pb-10 relative">
-        <h1 className='text-[28px] font-semibold mb-12 text-center'>What People's say about us!</h1>
+        <h1 className='text-[28px] font-semibold mb-12 text-center'>What People&apos;s say about us!</h1>
       <Carousel
         opts={{
           align: 'start',

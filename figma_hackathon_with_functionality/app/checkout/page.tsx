@@ -125,8 +125,12 @@ export default function Checkout() {
 
       const stripe = await stripePromise;
       await stripe?.redirectToCheckout({ sessionId: data.sessionId });
-    } catch (error: any) {
-      setError(error.message || "Payment failed. Try again.");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || "Payment failed. Try again.");
+      } else {
+        setError("Payment failed. Try again.");
+      }
       setLoading(false);
     }
   };
